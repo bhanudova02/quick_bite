@@ -15,7 +15,7 @@ export function RestaurantCard(props) {
         <div className="p-4">
           <div className="mb-3">
             <h6 className="font-bold text-lg text-gray-800 truncate">{name}</h6>
-            <p className="text-sm text-gray-500 truncate">{cuisines.join(", ")}</p>
+            <p className="text-sm text-gray-500 truncate">{cuisines.toString()}</p>
           </div>
           <div className="flex justify-between items-center text-sm">
             <span className="bg-blue-500 text-white px-2 py-1 rounded-md flex items-center">
