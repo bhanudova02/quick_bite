@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import { animals } from "./data/animals";
+import SearchableDropdown from "./SearchableDropdown";
 export function AddProduct() {
     const styleCls = {
         errorCss: 'border border-red-400 outline-none focus:ring-1 focus:border-red-500 focus:ring-red-500',
@@ -14,6 +15,7 @@ export function AddProduct() {
         productCity: '',
         productDescription: '',
         productTerms: false,
+        productCountry: ''
     });
 
     const [error, setErrors] = useState({
@@ -24,6 +26,7 @@ export function AddProduct() {
         productCityError: '',
         productDescriptionError: '',
         productTermsError: '',
+        productCountryError: ''
     });
 
     const validateField = (fieldName, value) => {
@@ -75,6 +78,10 @@ export function AddProduct() {
                     errorMessage = "You must agree to the terms.";
                 }
                 break;
+            case 'productCountry':
+                if (!value.trim()) {
+                    errorMessage = "Country Is Required";
+                }
             default:
                 break;
         }
@@ -82,7 +89,7 @@ export function AddProduct() {
         return errorMessage;
     };
 
-    
+
     const handleInputChange = (e) => {
         const { name, type, value, checked } = e.target;
         const fieldValue = type === 'checkbox' ? checked : value;
@@ -107,6 +114,7 @@ export function AddProduct() {
             productCityError: validateField('productCity', product.productCity),
             productDescriptionError: validateField('productDescription', product.productDescription),
             productTermsError: validateField('productTerms', product.productTerms),
+            productCountryError: validateField('productCountry', product.productCountry),
         };
 
         setErrors(newErrors);
@@ -117,6 +125,11 @@ export function AddProduct() {
             console.log('Product Details:', product);
         }
     };
+
+
+    const [value, setValue] = useState("Select option...");
+
+
 
     return (
         <div className="p-8">
@@ -193,6 +206,28 @@ export function AddProduct() {
                     </div>
                     <div>
                         {/* Dropdown Search Container */}
+                        <div className="flex flex-col">
+                            <SearchableDropdown
+                                options={animals}
+                                label="name"
+                                name="productCountry"
+                                id="id"
+                                selectedVal={product.productCountry}
+                                handleChange={(val) =>
+                                    handleInputChange({
+                                        target: { name: "productCountry", value: val || "" },
+                                    })
+                                }
+                                handleBlur={() =>
+                                    handleBlur({
+                                        target: { name: "productCountry", value: product.productCountry },
+                                    })
+                                }
+                                claName={`${error.productCountryError ? styleCls.errorCss : styleCls.validCss} 
+                                rounded-lg px-4 py-2 text-sm font-medium outline-none w-full`}
+                            />
+                            <span className="text-xs text-red-500 font-medium mt-1">{error.productCountryError}</span>
+                        </div>
                     </div>
                 </div>
                 <div>
