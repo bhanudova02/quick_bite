@@ -191,6 +191,9 @@ export function AddProduct() {
                         </select>
                         <span className="text-xs text-red-500 font-medium mt-1">{error.productCityError}</span>
                     </div>
+                    <div>
+                        {/* Dropdown Search Container */}
+                    </div>
                 </div>
                 <div>
                     <div className="flex flex-col">
@@ -201,7 +204,7 @@ export function AddProduct() {
                             value={product.productDescription}
                             onChange={handleInputChange}
                             onBlur={handleBlur}
-                            className={`${error.productEmailError ? styleCls.errorCss : styleCls.validCss} 
+                            className={`${error.productDescriptionError ? styleCls.errorCss : styleCls.validCss} 
                             rounded-lg px-4 py-2 text-sm font-medium outline-none`}
                         ></textarea>
                         <span className="text-xs text-red-500 font-medium mt-1">{error.productDescriptionError}</span>

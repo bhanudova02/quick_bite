@@ -1,5 +1,7 @@
 import './App.css'
 import { AddProduct } from './components/AddProduct'
+import DropdownSearch from './components/DropdownSearch'
+import CustomSelect from './components/DropdownSearch'
 import { RestaurantCard } from './components/RestaurantCard'
 import { SearchBar } from './components/SearchBar'
 import { ValidationComponent } from './components/ValidationComponent'
@@ -14,6 +16,7 @@ function App() {
         )}
       </div> */}
       <AddProduct/>
+      {/* <DropdownSearch/> */}
       {/* <ValidationComponent/> */}
     </main>
   )
