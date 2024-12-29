@@ -72,6 +72,7 @@ export function AddProduct() {
                 if (!value.trim()) {
                     errorMessage = "Country Is Required";
                 }
+                break;
             case 'productDescription':
                 if (!value.trim()) {
                     errorMessage = "Product Description Is Required";
