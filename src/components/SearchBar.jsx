@@ -9,13 +9,13 @@ export function SearchBar() {
     };
 
     return (
-        <div className="pt-24 pb-10">
-            <div className="flex justify-center items-center gap-2">
+        <div className='w-full lg:w-fit'>
+            <div className="flex flex-row justify-center gap-2">
                 <input 
                     type="text" 
                     value={searchTerm} 
                     onChange={(e) => setSearchTerm(e.target.value)} 
-                    className="border-2 border-blue-200 outline-none py-2 focus:border-orange-300 px-4 rounded-lg w-[460px]" 
+                    className="border-2 border-blue-200 outline-none py-2 focus:border-orange-300 px-4 rounded-lg w-full md:w-[460px]" 
                     placeholder="Search..."
                 />
                 <button 
