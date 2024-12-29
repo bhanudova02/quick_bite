@@ -60,7 +60,7 @@ function App() {
         </button>
         <SearchBar />
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-[90%] md:w-full mx-auto'>
         {listOfRestaurant.map(restInfo =>
           <RestaurantCard key={restInfo.info.id} restData={restInfo} />
         )}
