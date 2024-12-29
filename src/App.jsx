@@ -2,9 +2,10 @@ import { FaStar } from 'react-icons/fa'
 import './App.css'
 import { RestaurantCard } from './components/RestaurantCard'
 import { SearchBar } from './components/SearchBar'
+import { useState } from "react"
 // import { restaurandData } from './constants/api'
 function App() {
-  const listOfRestaurant = [
+  const [listOfRestaurant,setListOfRestaurant] = useState([
     {
       "info": {
         "id": "1003414",
@@ -46,15 +47,41 @@ function App() {
           "iconType": "ICON_TYPE_EMPTY"
         },
       }
+    },
+    {
+      "info": {
+        "id": "234875",
+        "name": "Adil Hotel",
+        "cloudinaryImageId": "gp1ityra6utvzqn6ghnv",
+        "costForTwo": "₹150 for two",
+        "cuisines": [
+          "North Indian",
+          "Biryani",
+          "Tandoor"
+        ],
+        "avgRating": 4.3,
+        "sla": {
+          "deliveryTime": 43,
+          "lastMileTravel": 10.8,
+          "serviceability": "SERVICEABLE",
+          "slaString": "40-45 mins",
+          "lastMileTravelString": "10.8 km",
+          "iconType": "ICON_TYPE_EMPTY"
+        },
+      }
     }
-  ]
+  ]);
+
+
   return (
     <main className='w-[90%] md:w-[96%] mx-auto'>
       <div className='flex flex-col lg:flex-row justify-between items-start mt-24'>
         <button className='bg-green-500 py-2 px-4 text-white rounded-md 
         font-semibold flex mx-auto lg:mx-0 mt-4 lg:mt-0 items-center gap-1 hover:bg-orange-500 transition-all 
         duration-300 ease-in-out hover:scale-105 order-last lg:order-first' onClick={() => {
-            console.log('Button Clicked')
+          setListOfRestaurant(
+            listOfRestaurant.filter(res=>res.info.avgRating>4)
+          );
           }}>
           Top Rerated Restaruant <span><FaStar /></span>
         </button>
