@@ -22,7 +22,7 @@ function App() {
       </div>
       <div className='mt-16'>
         <h1 className={`text-xl font-bold mb-4 w-fit px-4 py-1 rounded-md ${cardHeading.clsColor}`}>{cardHeading.title}</h1>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 '>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10'>
           {listOfRestaurant.map(restInfo =>
             <RestaurantCard key={restInfo.info.id} restData={restInfo} />
           )}
