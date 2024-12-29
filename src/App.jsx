@@ -3,94 +3,30 @@ import './App.css'
 import { RestaurantCard } from './components/RestaurantCard'
 import { SearchBar } from './components/SearchBar'
 import { useState } from "react"
-// import { restaurandData } from './constants/api'
+import { restaurandData } from './constants/api'
 function App() {
-  const [listOfRestaurant,setListOfRestaurant] = useState([
-    {
-      "info": {
-        "id": "1003414",
-        "name": "Pizza Hut",
-        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/12/5/dc74a4b7-8d63-4eb7-91c9-048973c2cc99_1003414.jpg",
-        "costForTwo": "₹350 for two",
-        "cuisines": [
-          "Pizzas"
-        ],
-        "avgRating": 3.5,
-        "sla": {
-          "deliveryTime": 54,
-          "lastMileTravel": 12.8,
-          "serviceability": "SERVICEABLE",
-          "slaString": "50-55 mins",
-          "lastMileTravelString": "12.8 km",
-          "iconType": "ICON_TYPE_EMPTY"
-        },
-      }
-    },
-    {
-      "info": {
-        "id": "1003416",
-        "name": "Sanju Ka Dhaba",
-        "cloudinaryImageId": "hjao7sorzggaeqito6au",
-        "costForTwo": "₹250 for two",
-        "cuisines": [
-          "North Indian",
-          "South Indian",
-          "Chinese"
-        ],
-        "avgRating": 4.5,
-        "sla": {
-          "deliveryTime": 52,
-          "lastMileTravel": 14.9,
-          "serviceability": "SERVICEABLE",
-          "slaString": "50-55 mins",
-          "lastMileTravelString": "14.9 km",
-          "iconType": "ICON_TYPE_EMPTY"
-        },
-      }
-    },
-    {
-      "info": {
-        "id": "234875",
-        "name": "Adil Hotel",
-        "cloudinaryImageId": "gp1ityra6utvzqn6ghnv",
-        "costForTwo": "₹150 for two",
-        "cuisines": [
-          "North Indian",
-          "Biryani",
-          "Tandoor"
-        ],
-        "avgRating": 4.3,
-        "sla": {
-          "deliveryTime": 43,
-          "lastMileTravel": 10.8,
-          "serviceability": "SERVICEABLE",
-          "slaString": "40-45 mins",
-          "lastMileTravelString": "10.8 km",
-          "iconType": "ICON_TYPE_EMPTY"
-        },
-      }
-    }
-  ]);
-
-
+  const [listOfRestaurant, setListOfRestaurant] = useState(restaurandData);
+  const [cardHeading, setCardHeading] = useState({title:'Order Food Online',clsColor:'text-black'})
   return (
     <main className='w-[90%] md:w-[96%] mx-auto'>
       <div className='flex flex-col lg:flex-row justify-between items-start mt-24'>
         <button className='bg-green-500 py-2 px-4 text-white rounded-md 
         font-semibold flex mx-auto lg:mx-0 mt-4 lg:mt-0 items-center gap-1 hover:bg-orange-500 transition-all 
         duration-300 ease-in-out hover:scale-105 order-last lg:order-first' onClick={() => {
-          setListOfRestaurant(
-            listOfRestaurant.filter(res=>res.info.avgRating>4)
-          );
+            setListOfRestaurant(listOfRestaurant.filter(res => res.info.avgRating > 4));
+            setCardHeading({title:'Top Rated Restaurants Foods',clsColor:'text-orange-500'})
           }}>
           Top Rerated Restaruant <span><FaStar /></span>
         </button>
         <SearchBar />
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-[90%] md:w-full mx-auto'>
-        {listOfRestaurant.map(restInfo =>
-          <RestaurantCard key={restInfo.info.id} restData={restInfo} />
-        )}
+      <div className='mt-16'>
+        <h1 className={`text-xl font-bold mb-4 bg-orange-100 w-fit px-4 py-1 rounded-md ${cardHeading.clsColor}`}>{cardHeading.title}</h1>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 '>
+          {listOfRestaurant.map(restInfo =>
+            <RestaurantCard key={restInfo.info.id} restData={restInfo} />
+          )}
+        </div>
       </div>
     </main>
   )

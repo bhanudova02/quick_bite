@@ -5,7 +5,7 @@ export function RestaurantCard(props) {
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } = restData?.info;
 
   return (
-    <div className='mt-16'>
+    <div>
       <div className="bg-white border-2 p-2 shadow-lg rounded-lg overflow-hidden">
         <img
           alt={`Logo of ${name}`}
