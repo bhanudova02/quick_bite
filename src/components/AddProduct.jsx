@@ -13,9 +13,10 @@ export function AddProduct() {
         productMobile: '',
         productEmail: '',
         productCity: '',
+        productCountry: '',
         productDescription: '',
         productTerms: false,
-        productCountry: ''
+        gender: ''
     });
 
     const [error, setErrors] = useState({
@@ -24,9 +25,10 @@ export function AddProduct() {
         productMobileError: '',
         productEmailError: '',
         productCityError: '',
+        productCountryError: '',
         productDescriptionError: '',
         productTermsError: '',
-        productCountryError: ''
+        genderError: ''
     });
 
     const validateField = (fieldName, value) => {
@@ -66,6 +68,10 @@ export function AddProduct() {
                     errorMessage = 'Please select a city.';
                 }
                 break;
+            case 'productCountry':
+                if (!value.trim()) {
+                    errorMessage = "Country Is Required";
+                }
             case 'productDescription':
                 if (!value.trim()) {
                     errorMessage = "Product Description Is Required";
@@ -78,10 +84,11 @@ export function AddProduct() {
                     errorMessage = "You must agree to the terms.";
                 }
                 break;
-            case 'productCountry':
-                if (!value.trim()) {
-                    errorMessage = "Country Is Required";
+            case 'gender':
+                if (!value) {
+                    errorMessage = "Please Select Gender";
                 }
+                break;
             default:
                 break;
         }
@@ -112,9 +119,10 @@ export function AddProduct() {
             productMobileError: validateField('productMobile', product.productMobile),
             productEmailError: validateField('productEmail', product.productEmail),
             productCityError: validateField('productCity', product.productCity),
+            productCountryError: validateField('productCountry', product.productCountry),
             productDescriptionError: validateField('productDescription', product.productDescription),
             productTermsError: validateField('productTerms', product.productTerms),
-            productCountryError: validateField('productCountry', product.productCountry),
+            genderError: validateField('gender', product.gender),
         };
 
         setErrors(newErrors);
@@ -123,13 +131,10 @@ export function AddProduct() {
 
         if (isValid) {
             console.log('Product Details:', product);
+            alert(`productName: ${product.productName}\nproductNumber:${product.productNumber}\nproductMobile: ${product.productMobile}\nproductEmail: ${product.productEmail}\nproductCity: ${product.productCity}\nproductCountry: ${product.productCountry}\nproductDescription: ${product.productDescription}\nproductTerms: ${product.productTerms}\ngender: ${product.gender}\n
+            `)
         }
     };
-
-
-    const [value, setValue] = useState("Select option...");
-
-
 
     return (
         <div className="p-8">
@@ -251,12 +256,38 @@ export function AddProduct() {
                             name="productTerms"
                             type="checkbox"
                             onChange={handleInputChange}
-                            onBlur={handleBlur}
                             className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                         />
                         <span className="text-xs text-black font-medium">I agree to the terms</span>
                     </div>
                     <span className="text-xs text-red-500 font-medium mt-1">{error.productTermsError}</span>
+                </div>
+                <div>
+                    <div className="flex gap-4">
+                        <div className="flex items-center gap-1">
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="male"
+                                checked={product.gender === "male"}
+                                onChange={handleInputChange}
+                                className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                            />
+                            <span className="text-sm">Male</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="female"
+                                checked={product.gender === "female"}
+                                onChange={handleInputChange}
+                                className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                            />
+                            <span>Female</span>
+                        </div>
+                    </div>
+                    <span className="text-xs text-red-500 font-medium mt-1">{error.genderError}</span>
                 </div>
                 <div>
                     <button
