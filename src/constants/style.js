@@ -1,0 +1,1 @@
+export  const top_btn_clsname = "bg-orange-500 py-2 px-4 text-white rounded-md  font-semibold flex mx-auto lg:mx-0 mt-4 lg:mt-0 items-center gap-1 hover:bg-orange-500 transition-all duration-300 ease-in-out hover:scale-105 order-last lg:order-first"

@@ -2,19 +2,33 @@ import { FaStar } from 'react-icons/fa'
 import './App.css'
 import { RestaurantCard } from './components/RestaurantCard'
 import { SearchBar } from './components/SearchBar'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { restaurandData } from './constants/api'
+import { top_btn_clsname } from './constants/style'
+
 function App() {
-  const [listOfRestaurant, setListOfRestaurant] = useState(restaurandData);
-  const [cardHeading, setCardHeading] = useState({title:'Order Food Online',clsColor:'text-black bg-orange-100 '})
+  const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [cardHeading, setCardHeading] = useState(
+    { title: 'Order Food Online', clsColor: 'text-black bg-orange-100 ' }
+  );
+
+  useEffect(() => {
+    fetchData();
+  }, [])
+
+  const fetchData = async () =>{
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4346845&lng=78.4416225&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const json = await data.json()
+    var resData = json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    setListOfRestaurant(resData);
+  }
+
   return (
     <main className='w-[90%] md:w-[96%] mx-auto'>
       <div className='flex flex-col lg:flex-row justify-between items-start mt-24'>
-        <button className='bg-orange-500 py-2 px-4 text-white rounded-md 
-        font-semibold flex mx-auto lg:mx-0 mt-4 lg:mt-0 items-center gap-1 hover:bg-orange-500 transition-all 
-        duration-300 ease-in-out hover:scale-105 order-last lg:order-first' onClick={() => {
+        <button className={top_btn_clsname} onClick={() => {
             setListOfRestaurant(listOfRestaurant.filter(res => res.info.avgRating > 4));
-            setCardHeading({title:'Top Rated Restaurants Foods',clsColor:'text-white bg-green-500'})
+            setCardHeading({ title: 'Top Rated Restaurants Foods', clsColor: 'text-white bg-green-500' })
           }}>
           Top Rerated Restaruant <span><FaStar /></span>
         </button>
