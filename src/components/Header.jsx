@@ -1,14 +1,12 @@
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
 export function Header() {
     const [btnName, setBtnName] = useState("Login");
-    const location = useLocation();
-    console.log(location.pathname)
     return (
-        <header className="shadow shadow-black/5 bg-white py-3.5 lg:py-2 px-4 flex justify-between items-center top-0 fixed w-full z-10">
+        <header className="shadow-md  bg-white py-3.5 lg:py-3 px-4 flex justify-between items-center top-0 fixed w-full z-10">
             <Link to="/" className="flex items-center">
-                <img src="logo.png" width="100%" className="w-10" alt="logo" />
+                <img src="/logo.png" width="100%" className="w-10" alt="logo" />
                 <h5 className="font-bold text-xl">Quick <span className="text-green-600">Bite</span></h5>
             </Link>
             <div className="hidden lg:block">
