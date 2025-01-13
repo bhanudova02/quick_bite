@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { RiMenu3Line } from "react-icons/ri";
+import { Link } from "react-router";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,10 +38,10 @@ const Sidebar = () => {
         </div>
         <div className="px-8 py-10">
           <ul className="flex flex-col gap-10 me-4 font-semibold text-base">
-            <li className="underline"><a href="#">Home</a></li>
-            <li><a href="#">AboutUs</a></li>
-            <li><a href="#">ContactUs</a></li>
-            <li><a href="#">Cart</a></li>
+            <li><Link onClick={toggleSheet} to="/">Home</Link></li>
+            <li><Link onClick={toggleSheet} to="/about">AboutUs</Link></li>
+            <li><Link onClick={toggleSheet} to="/contact">ContactUs</Link></li>
+            <li><Link onClick={toggleSheet} to="/cart">Cart</Link></li>
           </ul>
         </div>
       </div>

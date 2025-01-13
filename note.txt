@@ -1,0 +1,9 @@
+https://www.swiggy.com/restaurants
+
+
+
+
+Routign Two Types
+------------------
+*Client Side Routing
+*Server Side Routing
